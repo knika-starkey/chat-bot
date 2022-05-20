@@ -6,7 +6,7 @@ $(function () {
     "Сегодня прекрасная погода!",
     "С Вами очень приятно общаться!",
   ];
-  const hello = "Привет, я бот Пятница";
+  const hello = "Привет, я бот Пятница!";
   const goodbye = "До свидания!";
   const bye = "Пока!";
 
@@ -34,9 +34,20 @@ $(function () {
       $("#answers").append(`<div class="human_answ">${q.trim()}</div>`);
       //q = q.toLowerCase();
       let byeLowerCase = bye.substring(0, bye.length - 1).toLowerCase();
+      let goodbyeLowerCase = goodbye
+        .substring(0, goodbye.length - 1)
+        .toLowerCase();
+      let helloLowerCase = goodbye.substring(0, hello.length - 1).toLowerCase();
       setTimeout(function () {
         if (q.toLowerCase().search(byeLowerCase) != -1) {
           $("#answers").append(`<div class="bot_answ">${bye}</div>`);
+        } else if (q.toLowerCase().search(goodbyeLowerCase) != -1) {
+          $("#answers").append(`<div class="bot_answ">${goodbye}</div>`);
+        } else if (
+          q.toLowerCase().search("привет") != -1 ||
+          q.toLowerCase().search("здравствуйте") != -1
+        ) {
+          $("#answers").append(`<div class="bot_answ" ">${hello}</div>`);
         } else {
           $("#answers").append(`<div class="bot_answ">${rPhrases()}</div>`);
         }
